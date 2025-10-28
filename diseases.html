@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriSense — Crop Disease Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f5fff8, #d9f5e3);
+      color: #043a18;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(43,182,115,0.1);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    header h1 { margin: 0; color: #038c4c; font-size: 1.8rem; }
+    header p { margin-top: 0.3rem; color: #065e2e; }
+
+    .container { max-width: 1200px; margin: 2rem auto; padding: 1rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover { transform: translateY(-5px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+
+    .images {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .images img {
+      width: 50%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .card h3 { color: #038c4c; margin: 0.8rem 0 0.4rem 0; }
+    .card p { font-size: 0.95rem; margin: 0.3rem 0; line-height: 1.4rem; }
+
+    .upload-section { text-align: center; margin-top: 2.5rem; }
+    input[type="file"] {
+      margin-top: 1rem; border: 1px solid rgba(0,0,0,0.2);
+      padding: 0.6rem; border-radius: 10px; background: white;
+    }
+
+    .btn {
+      display: inline-block; background: linear-gradient(90deg, #3ad86b, #1dbf58);
+      color: #fff; font-weight: 600; border: none; border-radius: 10px;
+      padding: 0.8rem 1.4rem; cursor: pointer; margin-top: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(43,182,115,0.4); }
+    footer { text-align: center; color: #256239; padding: 1rem; font-size: 0.9rem; border-top: 1px solid rgba(0,0,0,0.1); margin-top: auto; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🌿 AgriSense — Crop Disease Info</h1>
+    <p id="regionInfo"></p>
+  </header>
+
+  <div class="container">
+    <h2>Top 10 Common Crop Diseases in India</h2>
+
+    <div class="grid" id="diseaseGrid"></div>
+
+    <div class="upload-section">
+      <h2>Didn’t find your crop issue?</h2>
+      <p>Upload an image for AI-based disease detection.</p>
+      <input type="file" accept="image/*">
+      <br>
+      <button class="btn" onclick="goToAIDetection()">Upload & Detect</button>
+    </div>
+  </div>
+
+  <footer>AgriSense Hackathon Project — Team of 3 | AI + Sustainability 🌱</footer>
+
+  <script>
+    const diseases = [
+      { name: "Late Blight (Tomato/Potato)", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/4/4e/Tomato_blight_leaf.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/3b/Potato_blight.jpg"
+        ], symptoms: "Dark spots, fruit rot, wilting.", remedy: "Spray Mancozeb or Copper Oxychloride.", status: "Treatable ✅" },
+      { name: "Rice Blast", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/a/a8/Rice_blast_symptoms.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7d/Rice_blast_closeup.jpg"
+        ], symptoms: "Spindle-shaped lesions on leaves.", remedy: "Use Tricyclazole or Iprodione.", status: "Treatable ✅" },
+      { name: "Chili Leaf Curl Virus", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/d/dc/Leaf_curl.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/48/Chilli_leaf_curl_infestation.jpg"
+        ], symptoms: "Leaf curling, stunted growth.", remedy: "Use neem oil, control whiteflies.", status: "Treatable ✅" },
+      { name: "Wheat Rust", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/0/0b/Wheat_leaf_rust.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6f/Wheat_rust_closeup.jpg"
+        ], symptoms: "Brown pustules on leaves.", remedy: "Apply Propiconazole.", status: "Treatable ✅" },
+      { name: "Bacterial Leaf Blight (Rice)", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/f/fc/Bacterial_leaf_blight_of_rice.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Rice_leaf_blight.jpg"
+        ], symptoms: "Yellowing & drying leaf tips.", remedy: "Use Copper fungicides.", status: "Treatable ✅" },
+      { name: "Powdery Mildew", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/e/e0/Powdery_mildew_on_rose.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/58/Powdery_mildew_on_cucumber.jpg"
+        ], symptoms: "White powder on leaves.", remedy: "Use Sulphur-based fungicides.", status: "Treatable ✅" },
+      { name: "Citrus Canker", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/f/fb/Citrus_canker_on_leaf.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Citrus_canker_on_orange.jpg"
+        ], symptoms: "Raised corky lesions on leaves.", remedy: "Apply Copper-based spray.", status: "Treatable ✅" },
+      { name: "Downy Mildew (Grapes)", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/d/dc/Downy_mildew_on_grape_leaves.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/25/Grapevine_downy_mildew.jpg"
+        ], symptoms: "Yellow patches on leaves.", remedy: "Use Metalaxyl or Mancozeb.", status: "Treatable ✅" },
+      { name: "Tikka Disease (Groundnut)", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/8/8c/Groundnut_Tikka_disease.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/65/Groundnut_leaf_spot.jpg"
+        ], symptoms: "Dark circular spots on leaves.", remedy: "Use Chlorothalonil spray.", status: "Treatable ✅" },
+      { name: "Fusarium Wilt", imgs: [
+          "https://upload.wikimedia.org/wikipedia/commons/6/69/Fusarium_wilt_on_banana.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/5c/Fusarium_wilt_closeup.jpg"
+        ], symptoms: "Yellowing, wilting of plants.", remedy: "Crop rotation, soil treatment.", status: "Manageable ⚠️" }
+    ];
+
+    const grid = document.getElementById("diseaseGrid");
+    diseases.forEach(d => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="images">
+          <img src="${d.imgs[0]}" alt="${d.name}">
+          <img src="${d.imgs[1]}" alt="${d.name}">
+        </div>
+        <h3>${d.name}</h3>
+        <p><b>Symptoms:</b> ${d.symptoms}</p>
+        <p><b>Remedy:</b> ${d.remedy}</p>
+        <p><b>Recommendation:</b> ${d.status}</p>
+      `;
+      grid.appendChild(card);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const regionName = params.get("region") || "India";
+    document.getElementById("regionInfo").innerHTML = `Based on your region: <b>${regionName}</b>`;
+
+    function goToAIDetection() {
+      alert("⚙️ Redirecting to AI Detection page...");
+    }
+  </script>
+</body>
+</html>
