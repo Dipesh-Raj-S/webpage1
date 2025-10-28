@@ -101,47 +101,57 @@
 
   <script>
     const diseases = [
-      { name: "Late Blight (Tomato/Potato)", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/4/4e/Tomato_blight_leaf.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/3b/Potato_blight.jpg"
-        ], symptoms: "Dark spots, fruit rot, wilting.", remedy: "Spray Mancozeb or Copper Oxychloride.", status: "Treatable ✅" },
-      { name: "Rice Blast", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/a/a8/Rice_blast_symptoms.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7d/Rice_blast_closeup.jpg"
-        ], symptoms: "Spindle-shaped lesions on leaves.", remedy: "Use Tricyclazole or Iprodione.", status: "Treatable ✅" },
-      { name: "Chili Leaf Curl Virus", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/d/dc/Leaf_curl.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/48/Chilli_leaf_curl_infestation.jpg"
-        ], symptoms: "Leaf curling, stunted growth.", remedy: "Use neem oil, control whiteflies.", status: "Treatable ✅" },
-      { name: "Wheat Rust", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/0/0b/Wheat_leaf_rust.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6f/Wheat_rust_closeup.jpg"
-        ], symptoms: "Brown pustules on leaves.", remedy: "Apply Propiconazole.", status: "Treatable ✅" },
-      { name: "Bacterial Leaf Blight (Rice)", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/f/fc/Bacterial_leaf_blight_of_rice.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Rice_leaf_blight.jpg"
-        ], symptoms: "Yellowing & drying leaf tips.", remedy: "Use Copper fungicides.", status: "Treatable ✅" },
-      { name: "Powdery Mildew", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/e/e0/Powdery_mildew_on_rose.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/58/Powdery_mildew_on_cucumber.jpg"
-        ], symptoms: "White powder on leaves.", remedy: "Use Sulphur-based fungicides.", status: "Treatable ✅" },
-      { name: "Citrus Canker", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/f/fb/Citrus_canker_on_leaf.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Citrus_canker_on_orange.jpg"
-        ], symptoms: "Raised corky lesions on leaves.", remedy: "Apply Copper-based spray.", status: "Treatable ✅" },
-      { name: "Downy Mildew (Grapes)", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/d/dc/Downy_mildew_on_grape_leaves.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/25/Grapevine_downy_mildew.jpg"
-        ], symptoms: "Yellow patches on leaves.", remedy: "Use Metalaxyl or Mancozeb.", status: "Treatable ✅" },
-      { name: "Tikka Disease (Groundnut)", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/8/8c/Groundnut_Tikka_disease.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/65/Groundnut_leaf_spot.jpg"
-        ], symptoms: "Dark circular spots on leaves.", remedy: "Use Chlorothalonil spray.", status: "Treatable ✅" },
-      { name: "Fusarium Wilt", imgs: [
-          "https://upload.wikimedia.org/wikipedia/commons/6/69/Fusarium_wilt_on_banana.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/5c/Fusarium_wilt_closeup.jpg"
-        ], symptoms: "Yellowing, wilting of plants.", remedy: "Crop rotation, soil treatment.", status: "Manageable ⚠️" }
-    ];
+  { name: "Late Blight (Tomato/Potato)", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/5/58/Tomato_blight_leaf.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/92/Potato_blight_infection.jpg"
+    ], symptoms: "Dark spots, fruit rot, wilting.", remedy: "Spray Mancozeb or Copper Oxychloride.", status: "Treatable ✅" },
+
+  { name: "Rice Blast", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/7/7d/Rice_blast_closeup.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/10/Rice_blast_leaf.jpg"
+    ], symptoms: "Spindle-shaped lesions on leaves.", remedy: "Use Tricyclazole or Iprodione.", status: "Treatable ✅" },
+
+  { name: "Chili Leaf Curl Virus", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/d/dc/Leaf_curl.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/1a/Chili_leaf_curl_virus_damage.jpg"
+    ], symptoms: "Leaf curling, stunted growth.", remedy: "Use neem oil, control whiteflies.", status: "Treatable ✅" },
+
+  { name: "Wheat Rust", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/0/0b/Wheat_leaf_rust.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/d/dc/Wheat_rust_symptom.jpg"
+    ], symptoms: "Brown pustules on leaves.", remedy: "Apply Propiconazole.", status: "Treatable ✅" },
+
+  { name: "Bacterial Leaf Blight (Rice)", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/3/32/Rice_leaf_blight_symptoms.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/1e/Rice_leaf_blight.jpg"
+    ], symptoms: "Yellowing & drying leaf tips.", remedy: "Use Copper fungicides.", status: "Treatable ✅" },
+
+  { name: "Powdery Mildew", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/e/e0/Powdery_mildew_on_rose.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/58/Powdery_mildew_on_cucumber.jpg"
+    ], symptoms: "White powder on leaves.", remedy: "Use Sulphur-based fungicides.", status: "Treatable ✅" },
+
+  { name: "Citrus Canker", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/9/99/Citrus_canker_leaf.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/4c/Citrus_canker_orange.jpg"
+    ], symptoms: "Raised corky lesions on leaves.", remedy: "Apply Copper-based spray.", status: "Treatable ✅" },
+
+  { name: "Downy Mildew (Grapes)", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/2/25/Grapevine_downy_mildew.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/fd/Downy_mildew_grape_leaf.jpg"
+    ], symptoms: "Yellow patches on leaves.", remedy: "Use Metalaxyl or Mancozeb.", status: "Treatable ✅" },
+
+  { name: "Tikka Disease (Groundnut)", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/3/3b/Groundnut_tikka_disease_leaf.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/98/Groundnut_leaf_spot_disease.jpg"
+    ], symptoms: "Dark circular spots on leaves.", remedy: "Use Chlorothalonil spray.", status: "Treatable ✅" },
+
+  { name: "Fusarium Wilt", imgs: [
+      "https://upload.wikimedia.org/wikipedia/commons/6/69/Fusarium_wilt_on_banana.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/26/Fusarium_wilt_tomato.jpg"
+    ], symptoms: "Yellowing, wilting of plants.", remedy: "Crop rotation, soil treatment.", status: "Manageable ⚠️" }
+];
+
 
     const grid = document.getElementById("diseaseGrid");
     diseases.forEach(d => {
